@@ -1,10 +1,10 @@
 {
   "name": "ezinterfacejs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "EzTech Forecourt DLL bindings to nodeJS",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx --package typescript tsc",
     "install": "npm run build",
     "test": "npm run build && node ./dist/test.js"
   },
