@@ -9,7 +9,7 @@ A simple implementation of EZInterface using NodeJS and FFI for dll communicatio
 
 #### Roadmap:
 
--   Implement all dll functions **(9/278)**
+-   Implement all dll functions **(31/278)**
 -   Implement event mode (Async)
 
 #### Usage:
