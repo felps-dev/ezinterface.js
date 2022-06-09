@@ -1,6 +1,6 @@
 {
   "name": "ezinterfacejs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "EzTech Forecourt DLL bindings to nodeJS",
   "main": "dist/index.js",
   "scripts": {
@@ -24,11 +24,9 @@
   "dependencies": {
     "ffi-napi": "^4.0.3",
     "iconv": "^3.0.1",
-    "ref-napi": "^3.0.3"
-  },
-  "devDependencies": {
+    "ref-napi": "^3.0.3",
     "@types/ffi-napi": "^4.0.5",
     "@types/ref-napi": "^3.0.4",
     "typescript": "^4.7.3"
-  }
+  },
 }
