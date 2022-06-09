@@ -1,0 +1,34 @@
+{
+  "name": "ezinterfacejs",
+  "version": "0.0.1",
+  "description": "EzTech Forecourt DLL bindings to nodeJS",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "install": "npm run build",
+    "test": "npm run build && node ./dist/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felps-dev/ezinterface.js.git"
+  },
+  "keywords": [
+    "eztech"
+  ],
+  "author": "Felipe Correa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/felps-dev/ezinterface.js/issues"
+  },
+  "homepage": "https://github.com/felps-dev/ezinterface.js#readme",
+  "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "iconv": "^3.0.1",
+    "ref-napi": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/ffi-napi": "^4.0.5",
+    "@types/ref-napi": "^3.0.4",
+    "typescript": "^4.7.3"
+  }
+}
