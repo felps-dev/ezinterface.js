@@ -4,9 +4,10 @@ import { fromOADate, toOADate } from './utils.js';
 import wchar from './w_char.js';
 
 class EZInterface {
-    dll = DLL;
+    dll: ReturnType<typeof DLL>;
 
-    constructor(host: string = '127.0.0.1', port: number = 5123, timeout: number = 10000) {
+    constructor(host: string = '127.0.0.1', port: number = 5123, timeout: number = 10000, dll_path: string = '') {
+        this.dll = DLL(dll_path);
         this.clientLogonEx(host, port, timeout);
     }
 

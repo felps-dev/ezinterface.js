@@ -1,13 +1,14 @@
 import ref from 'ref-napi';
+import path from 'path';
 
-export function getDllPath() {
+export function getDllPath(base_dir) {
     const arch = require('os').arch();
     if (['x64', 'arm64', 'mipsel', 'ppc64'].includes(arch)) {
         //64Bit proccessor
-        return 'EZClient64';
+        return path.join(base_dir, 'EZClient64');
     } else {
         //32Bit or something else
-        return 'EZClient';
+        return path.join(base_dir, 'EZClient');
     }
 }
 
