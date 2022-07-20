@@ -65,9 +65,20 @@ console.log('Encontrado ' + attendant_count + ' atendentes.');
 
 for (let index = attendant_count; index !== 0; index--) {
     const attendant_id = test.getAttendantByOrdinal(index);
-    console.log('Abastecimento ' + attendant_id + ': ');
+    console.log('Atendentes ' + attendant_id + ': ');
     const attendant = test.getAttendantPropertiesEx(attendant_id);
     console.log(attendant);
+}
+
+console.log('Testando Clientes');
+const client_count = test.getCardClientsCount();
+console.log('Encontrado ' + client_count + ' atendentes.');
+
+for (let index = client_count; index !== 0; index--) {
+    const client_id = test.getCardClientByOrdinal(index);
+    console.log('Clientes ' + client_id + ': ');
+    const client = test.getCardClientPropertiesEx2(client_id);
+    console.log(client);
 }
 
 console.log('Lendo estado das bombas');

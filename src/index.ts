@@ -550,6 +550,69 @@ class EZInterface {
             enabled: enabled.readInt16LE(),
         };
     }
+
+    // ------------------- Card Clients ------------------------
+    getCardClientsCount() {
+        const ret = ref.alloc('int32*');
+        this.goodResult(this.dll.GetCardClientsCount(ret));
+        return ret.readInt32LE();
+    }
+
+    getCardClientByOrdinal(index: number) {
+        const id = ref.alloc('int32*');
+        this.goodResult(this.dll.GetCardClientByOrdinal(index, id));
+        return id.readInt32LE();
+    }
+
+    getCardClientPropertiesEx2(id: number) {
+        const number = ref.alloc('int32*');
+        const name = ref.alloc(wchar);
+        const tag = ref.alloc(wchar);
+        const enabled = ref.alloc('int16*');
+        const price_level = ref.alloc('int16*');
+        const plate = ref.alloc(wchar);
+        const grade_type = ref.alloc('int16*');
+        const card_type = ref.alloc('int16*');
+        const limit_type = ref.alloc('int16*');
+        const limit = ref.alloc('double*');
+        const entry_type = ref.alloc('int16*');
+        const expiration_date = ref.alloc('double*');
+        const parent_id = ref.alloc('int64*');
+
+        this.goodResult(
+            this.dll.GetCardClientPropertiesEx2(
+                id,
+                number,
+                name,
+                tag,
+                enabled,
+                price_level,
+                plate,
+                grade_type,
+                card_type,
+                limit_type,
+                limit,
+                entry_type,
+                expiration_date,
+                parent_id,
+            ),
+        );
+        return {
+            number: number.readInt32LE(),
+            name: name.deref(),
+            tag: tag.deref(),
+            enabled: enabled.readInt16LE(),
+            price_level: price_level.readInt16LE(),
+            plate: plate.deref(),
+            grade_type: grade_type.readInt16LE(),
+            card_type: card_type.readInt16LE(),
+            limit_type: limit_type.readInt16LE(),
+            limit: limit.readDoubleLE(),
+            entry_type: entry_type.readInt16LE(),
+            expiration_date: fromOADate(expiration_date.readDoubleLE()),
+            parent_id: parent_id.readInt64LE(),
+        };
+    }
 }
 
 export default EZInterface;
