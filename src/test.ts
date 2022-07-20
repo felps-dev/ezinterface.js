@@ -59,6 +59,17 @@ for (let index = del_count; index !== 0; index--) {
     test.clearDelivery(del_id, abast.dtype);
 }
 
+console.log('Testando Atendentes');
+const attendant_count = test.getAttendantsCount();
+console.log('Encontrado ' + attendant_count + ' atendentes.');
+
+for (let index = attendant_count; index !== 0; index--) {
+    const attendant_id = test.getAttendantByOrdinal(index);
+    console.log('Abastecimento ' + attendant_id + ': ');
+    const attendant = test.getAttendantPropertiesEx(attendant_id);
+    console.log(attendant);
+}
+
 console.log('Lendo estado das bombas');
 setInterval(() => {
     const all_status = test.getAllPumpStatuses();

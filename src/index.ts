@@ -496,6 +496,60 @@ class EZInterface {
             gauge_alarms_mark: gauge_alarms_mark.readInt32LE(),
         };
     }
+
+    // ------------------- ATTENDANTS ------------------------
+    getAttendantsCount() {
+        const ret = ref.alloc('int32*');
+        this.goodResult(this.dll.GetAttendantsCount(ret));
+        return ret.readInt32LE();
+    }
+
+    getAttendantByOrdinal(index: number) {
+        const id = ref.alloc('int32*');
+        this.goodResult(this.dll.GetAttendantByOrdinal(index, id));
+        return id.readInt32LE();
+    }
+
+    getAttendantPropertiesEx(id: number) {
+        const number = ref.alloc('int32*');
+        const name = ref.alloc(wchar);
+        const short_name = ref.alloc(wchar);
+        const password = ref.alloc(wchar);
+        const tag = ref.alloc(wchar);
+        const shiftastart = ref.alloc('int16*');
+        const shiftaend = ref.alloc('int16*');
+        const shiftbstart = ref.alloc('int16*');
+        const shiftbend = ref.alloc('int16*');
+        const enabled = ref.alloc('int16*');
+
+        this.goodResult(
+            this.dll.GetAttendantPropertiesEx(
+                id,
+                number,
+                name,
+                short_name,
+                password,
+                tag,
+                shiftastart,
+                shiftaend,
+                shiftbstart,
+                shiftbend,
+                enabled,
+            ),
+        );
+        return {
+            number: number.readInt32LE(),
+            name: name.deref(),
+            short_name: short_name.deref(),
+            password: password.deref(),
+            tag: tag.deref(),
+            shiftastart: shiftastart.readInt16LE(),
+            shiftaend: shiftaend.readInt16LE(),
+            shiftbstart: shiftbstart.readInt16LE(),
+            shiftbend: shiftbend.readInt16LE(),
+            enabled: enabled.readInt16LE(),
+        };
+    }
 }
 
 export default EZInterface;
