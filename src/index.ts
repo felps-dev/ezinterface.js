@@ -6,9 +6,16 @@ import wchar from './w_char.js';
 class EZInterface {
     dll: ReturnType<typeof DLL>;
 
-    constructor(host: string = '127.0.0.1', port: number = 5123, timeout: number = 10000, dll_path: string = '') {
+    constructor(
+        id: number = 1,
+        type: number = 1,
+        host: string = '127.0.0.1',
+        port: number = 5123,
+        timeout: number = 10000,
+        dll_path: string = '',
+    ) {
         this.dll = DLL(dll_path);
-        this.clientLogonEx(host, port, timeout);
+        this.clientLogonEx(id, type, host, port, timeout);
     }
 
     goodResult(res: number) {
@@ -23,8 +30,8 @@ class EZInterface {
         return this.goodResult(this.dll.TestConnection());
     }
 
-    clientLogonEx(host: string, port: number = 5123, timeout: number = 10000) {
-        this.goodResult(this.dll.ClientLogonEx(1, 1, host, port, 5124, timeout, 0, 0, 0));
+    clientLogonEx(id: number = 1, type: number = 1, host: string, port: number = 5123, timeout: number = 10000) {
+        this.goodResult(this.dll.ClientLogonEx(id, type, host, port, 5124, timeout, 0, 0, 0));
     }
 
     clientLogoff() {
